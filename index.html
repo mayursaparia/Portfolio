@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayur Saparia — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Azeret+Mono:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0d0f0e;--bg2:#131614;--bg3:#1a1d1b;--line:rgba(255,255,255,0.07);--white:#edf0ec;--muted:#6b7068;--muted2:#3f4240;--green:#4ade80}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Azeret Mono',monospace;font-size:13px;line-height:1.6;overflow-x:hidden;cursor:none}
+#cur{position:fixed;width:8px;height:8px;background:var(--green);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s}
+#curR{position:fixed;width:28px;height:28px;border:1px solid var(--green);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.4;transition:width .2s,height .2s,opacity .2s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;border-bottom:1px solid var(--line);backdrop-filter:blur(20px);background:rgba(13,15,14,0.88)}
+.nav-id{display:flex;align-items:center;gap:10px}
+.nav-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.nav-name{font-weight:600;font-size:13px;letter-spacing:.04em}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-badge{font-size:11px;color:var(--green);border:1px solid rgba(74,222,128,.4);padding:4px 12px;border-radius:2px}
+#hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:96px 3rem 0;position:relative;overflow:hidden}
+.hero-top{display:flex;flex-direction:column;justify-content:center;padding-bottom:3rem}
+.hero-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'//';color:var(--green);font-weight:600}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,11vw,155px);line-height:.88;letter-spacing:-.01em;margin-bottom:2rem}
+h1 .outline{-webkit-text-stroke:1px var(--white);color:transparent}
+h1 .green{color:var(--green)}
+.hero-desc{max-width:540px;color:var(--muted);font-size:13px;line-height:1.85;border-left:2px solid var(--green);padding-left:1.25rem;margin-bottom:2.5rem}
+.hero-desc strong{color:var(--white);font-weight:500}
+.hero-ctas{display:flex;gap:1rem}
+.btn{font-family:'Azeret Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:10px 20px;text-decoration:none;border-radius:2px;transition:background .2s,color .2s;cursor:none}
+.btn-primary{background:var(--green);color:#0d0f0e;font-weight:600}
+.btn-primary:hover{background:#22c55e}
+.btn-ghost{border:1px solid var(--line);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.hs{background:var(--bg2);padding:1.5rem}
+.hs-n{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--green);line-height:1;display:block;margin-bottom:4px}
+.hs-l{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.hs-s{font-size:10px;color:var(--muted2);margin-top:2px}
+section{padding:5rem 3rem;border-top:1px solid var(--line)}
+.sh{display:flex;align-items:baseline;gap:1rem;margin-bottom:3rem}
+.sn{font-size:11px;color:var(--green);letter-spacing:.1em;font-weight:600}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,4vw,52px);letter-spacing:.01em;line-height:1}
+.exp-list{display:flex;flex-direction:column}
+.exp-item{display:grid;grid-template-columns:220px 1fr;gap:3rem;padding:2.5rem 0;border-bottom:1px solid var(--line)}
+.exp-item:first-child{border-top:1px solid var(--line)}
+.ep{font-size:11px;color:var(--muted);letter-spacing:.05em;margin-bottom:.5rem}
+.ec{font-family:'Fraunces',serif;font-size:15px;font-weight:400;color:var(--white);margin-bottom:3px}
+.el{font-size:11px;color:var(--muted2)}
+.er{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.02em;color:var(--white);margin-bottom:1rem}
+.eb{list-style:none;display:flex;flex-direction:column;gap:.55rem}
+.eb li{font-size:12px;color:var(--muted);line-height:1.75;padding-left:1.2rem;position:relative}
+.eb li::before{content:'→';position:absolute;left:0;color:var(--green);font-size:11px;top:1px}
+.eb li strong{color:var(--white);font-weight:500}
+.et{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem}
+.et span{font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--line);color:var(--muted2);border-radius:2px}
+.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.sb{background:var(--bg2);padding:2rem 1.75rem}
+.sb-cat{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:1.25rem;display:flex;align-items:center;gap:8px}
+.sb-cat::before{content:'';display:inline-block;width:18px;height:1px;background:var(--green)}
+.sb-rows{display:flex;flex-direction:column}
+.sb-row{font-size:12px;color:var(--muted);display:flex;align-items:center;justify-content:space-between;padding:.45rem 0;border-bottom:1px solid var(--line)}
+.sb-row:last-child{border-bottom:none}
+.sb-row span{font-size:10px;color:var(--muted2)}
+.pj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.pj{background:var(--bg);padding:2rem 1.75rem;position:relative;overflow:hidden;transition:background .2s;cursor:none}
+.pj:hover{background:var(--bg3)}
+.pj::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.pj:hover::after{transform:scaleX(1)}
+.pj-n{font-size:10px;color:var(--muted2);letter-spacing:.1em;margin-bottom:1rem}
+.pj-t{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--white);line-height:1.25;margin-bottom:.75rem}
+.pj-d{font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:1.25rem}
+.pj-s{display:flex;flex-wrap:wrap;gap:5px}
+.pj-s span{font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--line);color:var(--muted2);border-radius:2px}
+#contact{background:var(--bg2)}
+.ct-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.ct-tagline{font-family:'Fraunces',serif;font-style:italic;font-size:18px;font-weight:300;color:var(--muted);line-height:1.5;margin-bottom:1.5rem;max-width:360px}
+.ct-note{font-size:12px;color:var(--muted2);line-height:1.8;max-width:340px}
+.ct-links{margin-top:2rem;display:flex;flex-direction:column}
+.cl{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--white);transition:color .2s;cursor:none}
+.cl:first-child{border-top:1px solid var(--line)}
+.cl:hover{color:var(--green)}
+.cl-l{font-weight:600;font-size:13px;letter-spacing:.03em}
+.cl-v{font-size:11px;color:var(--muted);transition:color .2s}
+.cl:hover .cl-v{color:var(--green)}
+.cl-a{font-size:16px;transition:transform .2s}
+.cl:hover .cl-a{transform:translate(3px,-3px)}
+footer{padding:1.5rem 3rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+footer span{font-size:11px;color:var(--muted2)}
+.f-r{display:flex;gap:2rem}
+.fade{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.fade.in{opacity:1;transform:translateY(0)}
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  #hero,section{padding:3rem 1.5rem}
+  #hero{padding-top:80px}
+  h1{font-size:clamp(50px,15vw,80px)}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .exp-item{grid-template-columns:1fr;gap:1rem}
+  .sk-grid,.pj-grid{grid-template-columns:1fr}
+  .ct-wrap{grid-template-columns:1fr;gap:2rem}
+  footer{flex-direction:column;gap:.4rem;text-align:center}
+  .f-r{flex-direction:column;align-items:center;gap:.3rem}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="curR"></div>
+
+<nav>
+  <div class="nav-id"><div class="nav-dot"></div><span class="nav-name">Mayur Saparia</span></div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <span class="nav-badge">Open to Work</span>
+</nav>
+
+<section id="hero" style="border-top:none">
+  <div class="hero-top fade">
+    <div class="hero-eyebrow">Toronto, ON &middot; AZ-900 Certified &middot; MS Information Systems &middot; Northeastern University</div>
+    <h1>MAYUR<br><span class="outline">SAPARIA</span><br><span class="green">DEV.</span></h1>
+    <p class="hero-desc"><strong>Full Stack Developer</strong> with 4+ years delivering scalable, cloud-native, and API-driven web applications across <strong>financial services</strong>, <strong>enterprise software</strong>, and <strong>academia</strong>. Node.js &middot; .NET Core &middot; React &middot; Azure &middot; REST APIs.</p>
+    <div class="hero-ctas"><a href="#contact" class="btn btn-primary">Get in touch</a><a href="#experience" class="btn btn-ghost">View experience</a></div>
+  </div>
+  <div class="hero-stats fade">
+    <div class="hs"><span class="hs-n">35%</span><div class="hs-l">API Latency Cut</div><div class="hs-s">RBC &middot; NestJS + TypeScript</div></div>
+    <div class="hs"><span class="hs-n">50%</span><div class="hs-l">Incidents Reduced</div><div class="hs-s">Cognizant &middot; compatibility fixes</div></div>
+    <div class="hs"><span class="hs-n">40%</span><div class="hs-l">Security Risk Down</div><div class="hs-s">CSRF &amp; SQL injection</div></div>
+    <div class="hs"><span class="hs-n">20%</span><div class="hs-l">Team Productivity</div><div class="hs-s">Acting Scrum Master</div></div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="sh fade"><span class="sn">01 //</span><h2>Experience</h2></div>
+  <div class="exp-list">
+    <div class="exp-item fade">
+      <div><div class="ep">SEP 2024 &ndash; DEC 2024</div><div class="ec">Northeastern University</div><div class="el">Toronto, ON</div></div>
+      <div>
+        <div class="er">Teaching Assistant &mdash; Advanced Data Management Systems</div>
+        <ul class="eb">
+          <li>Facilitated graduate lab sessions on <strong>SQL / NoSQL</strong> technologies including Oracle and MongoDB, reinforcing enterprise data management concepts.</li>
+          <li>Coached students on <strong>query optimization</strong>, indexing strategies, and transaction management through structured 1:1 troubleshooting sessions.</li>
+          <li>Evaluated complex database projects, providing actionable feedback on schema design, performance tuning, and data modelling best practices.</li>
+        </ul>
+        <div class="et"><span>Oracle</span><span>MongoDB</span><span>SQL</span><span>NoSQL</span><span>Data Modelling</span></div>
+      </div>
+    </div>
+    <div class="exp-item fade">
+      <div><div class="ep">SEP 2023 &ndash; DEC 2023</div><div class="ec">Royal Bank of Canada (RBC)</div><div class="el">Toronto, ON &middot; Co-op</div></div>
+      <div>
+        <div class="er">Full Stack Developer</div>
+        <ul class="eb">
+          <li>Engineered high-performance REST APIs using <strong>NestJS and TypeScript</strong>, achieving 2&times; faster response times vs. Express.js and reducing average API latency by <strong>35%</strong>.</li>
+          <li>Architected and automated end-to-end data pipelines with <strong>Apache Airflow</strong>, ingesting data from Amazon S3 into Microsoft SQL Server, eliminating manual sync errors.</li>
+          <li>Drove <strong>90%+ unit test coverage</strong> using Jest; designed Postman collections for payload validation, accelerating QA cycles and reducing bug-to-production rate.</li>
+          <li>Automated Postman environment setup with shell scripts synced to GitHub, standardizing testing workflows and cutting team onboarding time.</li>
+          <li>Optimized <strong>SQL Server schemas</strong> with advanced indexing and query tuning, improving data retrieval speed and backend reliability.</li>
+          <li>Delivered features in Agile sprints using <strong>Jira and Confluence</strong>, collaborating cross-functionally with product and QA teams.</li>
+        </ul>
+        <div class="et"><span>NestJS</span><span>TypeScript</span><span>Apache Airflow</span><span>Amazon S3</span><span>SQL Server</span><span>Jest</span><span>REST APIs</span><span>Postman</span></div>
+      </div>
+    </div>
+    <div class="exp-item fade">
+      <div><div class="ep">NOV 2020 &ndash; AUG 2022</div><div class="ec">Cognizant Technology Solutions</div><div class="el">Pune, India</div></div>
+      <div>
+        <div class="er">Junior Software Engineer</div>
+        <ul class="eb">
+          <li>Developed and enhanced a US-based <strong>financial advisor portal</strong> using .NET MVC, C#, JavaScript, HTML/CSS, and jQuery, improving cross-device compatibility and UX.</li>
+          <li>Identified and remediated <strong>CSRF and SQL injection vulnerabilities</strong>, reducing security risks by <strong>40%</strong> for sensitive financial data.</li>
+          <li>Upgraded jQuery and Knockout.js across legacy projects, cutting cross-browser and device compatibility issues by <strong>50%</strong> and reducing support tickets.</li>
+          <li>Led <strong>Scrum ceremonies</strong> as acting Scrum Master, managing sprint planning and JIRA tracking, resulting in a 20% increase in team productivity.</li>
+          <li>Coordinated production deployments across multiple time zones, ensuring <strong>zero-downtime releases</strong> and SLA compliance.</li>
+        </ul>
+        <div class="et"><span>.NET MVC</span><span>.NET Core</span><span>C#</span><span>JavaScript</span><span>jQuery</span><span>Knockout.js</span><span>Scrum</span><span>JIRA</span></div>
+      </div>
+    </div>
+    <div class="exp-item fade">
+      <div><div class="ep">SEP 2019 &ndash; SEP 2020</div><div class="ec">TechSecure Solutions</div><div class="el">Pune, India &middot; Internship</div></div>
+      <div>
+        <div class="er">Software Developer Intern</div>
+        <ul class="eb">
+          <li>Assisted in development and testing of web applications using modern programming frameworks.</li>
+          <li>Supported debugging, feature enhancements, and system maintenance activities.</li>
+          <li>Collaborated with senior developers on application improvements and technical documentation.</li>
+        </ul>
+        <div class="et"><span>Web Development</span><span>Testing</span><span>Debugging</span><span>Documentation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--bg2)">
+  <div class="sh fade"><span class="sn">02 //</span><h2>Technical Skills</h2></div>
+  <div class="sk-grid fade">
+    <div class="sb">
+      <div class="sb-cat">Languages</div>
+      <div class="sb-rows">
+        <div class="sb-row">JavaScript / TypeScript<span>Primary</span></div>
+        <div class="sb-row">C#<span>Primary</span></div>
+        <div class="sb-row">Python<span>Proficient</span></div>
+        <div class="sb-row">Java<span>Proficient</span></div>
+        <div class="sb-row">PL/SQL<span>Proficient</span></div>
+        <div class="sb-row">HTML / CSS<span>Proficient</span></div>
+      </div>
+    </div>
+    <div class="sb">
+      <div class="sb-cat">Frameworks &amp; Runtimes</div>
+      <div class="sb-rows">
+        <div class="sb-row">Node.js / NestJS<span>Primary</span></div>
+        <div class="sb-row">.NET Core / MVC / Web API<span>Primary</span></div>
+        <div class="sb-row">React<span>Proficient</span></div>
+        <div class="sb-row">Angular<span>Proficient</span></div>
+        <div class="sb-row">Spring Boot<span>Familiar</span></div>
+        <div class="sb-row">NUnit / Jest<span>Proficient</span></div>
+      </div>
+    </div>
+    <div class="sb">
+      <div class="sb-cat">Databases</div>
+      <div class="sb-rows">
+        <div class="sb-row">SQL Server<span>Primary</span></div>
+        <div class="sb-row">PostgreSQL / MySQL<span>Proficient</span></div>
+        <div class="sb-row">Oracle<span>Proficient</span></div>
+        <div class="sb-row">MongoDB<span>Proficient</span></div>
+        <div class="sb-row">Redis / NoSQL<span>Familiar</span></div>
+      </div>
+    </div>
+    <div class="sb">
+      <div class="sb-cat">Cloud &amp; DevOps</div>
+      <div class="sb-rows">
+        <div class="sb-row">Microsoft Azure (AZ-900)<span>Certified</span></div>
+        <div class="sb-row">AWS (S3, EC2)<span>Familiar</span></div>
+        <div class="sb-row">Docker / Kubernetes<span>Familiar</span></div>
+        <div class="sb-row">Jenkins / GitHub Actions<span>Proficient</span></div>
+        <div class="sb-row">Apache Airflow<span>Proficient</span></div>
+        <div class="sb-row">TeamCity<span>Familiar</span></div>
+      </div>
+    </div>
+    <div class="sb">
+      <div class="sb-cat">Tools &amp; Methods</div>
+      <div class="sb-rows">
+        <div class="sb-row">REST APIs<span>Primary</span></div>
+        <div class="sb-row">Git / GitHub<span>Primary</span></div>
+        <div class="sb-row">Postman<span>Primary</span></div>
+        <div class="sb-row">Jira / Confluence<span>Primary</span></div>
+        <div class="sb-row">Agile / Scrum<span>Primary</span></div>
+        <div class="sb-row">CI/CD Pipelines<span>Proficient</span></div>
+      </div>
+    </div>
+    <div class="sb">
+      <div class="sb-cat">Education</div>
+      <div class="sb-rows">
+        <div class="sb-row">MS &mdash; Information Systems<span>GPA 3.83</span></div>
+        <div class="sb-row">Northeastern University<span>2022&ndash;2024</span></div>
+        <div class="sb-row">BEng &mdash; Information Technology<span>8.34/10</span></div>
+        <div class="sb-row">Pune University<span>2016&ndash;2020</span></div>
+        <div class="sb-row">AZ-900 Certified<span>Microsoft 2023</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sh fade"><span class="sn">03 //</span><h2>Projects</h2></div>
+  <div class="pj-grid fade">
+    <div class="pj">
+      <div class="pj-n">01 / PROJECT</div>
+      <div class="pj-t">Financial Planning Tool &mdash; DMRFC</div>
+      <div class="pj-d">Built a predictive financial planning tool for a non-profit using SARIMA time-series models and Power BI dashboards, improving forecast accuracy and enabling data-driven budget decisions.</div>
+      <div class="pj-s"><span>Python</span><span>SARIMA</span><span>Power BI</span><span>Excel</span></div>
+    </div>
+    <div class="pj">
+      <div class="pj-n">02 / PROJECT</div>
+      <div class="pj-t">Real-Time Dating Web Application</div>
+      <div class="pj-d">Architected a real-time web app with secure JWT authentication and live chat via SignalR. Deployed on Heroku with containerized architecture for scalability.</div>
+      <div class="pj-s"><span>.NET Core Web API</span><span>Angular</span><span>SQL Server</span><span>SignalR</span><span>Docker</span><span>Heroku</span></div>
+    </div>
+    <div class="pj">
+      <div class="pj-n">03 / PROJECT</div>
+      <div class="pj-t">Hotel Management System</div>
+      <div class="pj-d">Designed and delivered a full-stack booking system optimizing check-in/check-out workflows, increasing operational throughput and reducing manual processing time.</div>
+      <div class="pj-s"><span>Spring Boot</span><span>React</span><span>MySQL</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--bg2)">
+  <div class="sh fade"><span class="sn">04 //</span><h2>Contact</h2></div>
+  <div class="ct-wrap fade">
+    <div>
+      <p class="ct-tagline">Open to full-time, contract, and hybrid / remote opportunities across Toronto and beyond.</p>
+      <p class="ct-note">Actively seeking Full Stack Developer, Software Developer, Backend Developer, and Application Support roles. Fastest response via LinkedIn or email.</p>
+    </div>
+    <div class="ct-links">
+      <a href="mailto:mayur.saparia15@gmail.com" class="cl"><div><div class="cl-l">Email</div><div class="cl-v">mayur.saparia15@gmail.com</div></div><span class="cl-a">&#8599;</span></a>
+      <a href="https://linkedin.com/in/mayursaparia" target="_blank" rel="noopener" class="cl"><div><div class="cl-l">LinkedIn</div><div class="cl-v">linkedin.com/in/mayursaparia</div></div><span class="cl-a">&#8599;</span></a>
+      <a href="tel:+19057830757" class="cl"><div><div class="cl-l">Phone</div><div class="cl-v">+1 (905) 783-0757</div></div><span class="cl-a">&#8599;</span></a>
+      <a href="/Mayur_Saparia_Resume.pdf" class="cl"><div><div class="cl-l">Resume</div><div class="cl-v">Download PDF</div></div><span class="cl-a">&#8599;</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; 2026 Mayur Saparia &middot; Toronto, ON</span>
+  <div class="f-r"><span>MS Information Systems &middot; Northeastern University &middot; AZ-900</span><span>Hosted on Netlify</span></div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,.pj,.exp-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='5px';cur.style.height='5px';curR.style.width='44px';curR.style.height='44px';curR.style.opacity='.7'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='8px';cur.style.height='8px';curR.style.width='28px';curR.style.height='28px';curR.style.opacity='.4'});
+});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:0.07});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
